@@ -9,6 +9,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  
 }
 
 html {
@@ -312,7 +313,16 @@ section {
   justify-content: space-between;
   gap: 2rem;
 }
-
+.container {
+  width: 80%; /* Adjusts the width of the container to 80% of its parent */
+  max-width: 800px; /* Ensures the container does not get too wide on larger screens */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Adds a slight shadow for better visibility */
+  text-align: left;
+  
+}
 .details-container {
   padding: 1.5rem;
   flex-grow: 1;
@@ -378,7 +388,35 @@ article {
 article .icon {
   cursor: default;
 }
+h1 {
+  text-align: center;
+  color: #333;
+}
 
+ol {
+  counter-reset: li; /* Initiate a counter */
+  margin-left: 0; /* Remove default margin */
+  padding-left: 0; /* Remove default padding */
+}
+
+ol > li {
+  position: relative; /* Allows absolute positioning of the pseudo-elements */
+  margin: 10px 0; /* Adds a slight margin for better readability */
+  padding-left: 40px; /* Add padding to make space for the number */
+  list-style: none; /* Removes the default list style */
+  line-height: 1.6; /* Increases line height for readability */
+}
+
+ol > li:before {
+  content: counter(li); /* Add the number */
+  counter-increment: li; /* Increment the counter */
+  position: absolute; /* Position the numbers absolutely */
+  left: 0; /* Align to the left */
+  top: 0; /* Align to the top */
+  font-size: 20px; /* Increase font size */
+  font-weight: bold; /* Make the number bold */
+  color: #555; /* Color of the numbers */
+} 
 /* PROJECTS SECTION */
 
 #projects {
