@@ -59,14 +59,26 @@ a:hover {
   text-decoration-color: rgb(181, 181, 181);
 }
 #background-image-section {
-  background-image: url('assets/bg1.jpg'); /* Replace with your image path */
+  background-image: url('assets/bg1.jpg'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 80vh; /* Adjust the height as needed */
+  height: 80vh;
   margin: 0;
   padding: 0;
 }
+#background-image-section1 {
+  background-image: url('assets/bgeda.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 80vh;
+  width: 100vw; /* Adjust the width to cover the viewport width */
+  margin: 0;
+  padding: 0;
+}
+
+
 .logo {
   font-size: 2rem;
 }
@@ -75,7 +87,6 @@ a:hover {
   cursor: default;
 }
 
-/* HAMBURGER MENU */
 
 #hamburger-nav {
   display: none;
