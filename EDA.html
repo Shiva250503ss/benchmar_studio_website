@@ -249,18 +249,6 @@
     <img src="assets/V11.png" width="500" class="center" alt="Correlation Heatmap of Token Counts">
 </div>
 
-<h2>Scatter Plots of User Tokens vs Assistant Tokens</h2>
-<div class="box">
-    <p>
-        These are <strong>scatter plots</strong> showing the relationship between user tokens and assistant tokens. The first plot is colored by model, focusing on models with more than 2,000 occurrences, while the second plot is colored by language, highlighting languages with more than 1,000 occurrences. These plots help identify patterns in token usage across different models and languages.
-    </p>
-    <p>
-        The plots are useful for model development to optimize token handling based on specific models and languages, and for model selection by determining which models and languages are more efficient or better suited for token-heavy tasks.
-    </p>
-    <img src="assets/v12.png" width="500" class="center" alt="Scatter Plot Colored by Model">
-    
-</div>
-
 <h2>Stacked Bar Plot of Language Distribution Across Models</h2>
 <div class="box">
     <p>
@@ -311,15 +299,6 @@
 </div>
 
 
-<h2>Histograms of Token Distribution by Language</h2>
-<div class="box">
-    <p>
-        These are <strong>histograms</strong> with a kernel density estimate, showing the distribution of user tokens (top plot) and assistant tokens (bottom plot) across languages that have more than 1,000 occurrences. Both plots reveal that for the majority of the interactions, regardless of language, just a few tokens are involved (between 0 and 10,000 tokens), with some outliers at higher token counts. We can further explore language-specific differences or outliers in token usage that might indicate trends in longer conversations.
-    </p>
-    <img src="assets/v18.png" width="500" class="center" alt="Histograms of Token Distribution by Language">
-    <br><img src="assets/v19.png" width="500" class="center" alt="Histograms of Token Distribution by Language">
-</div>
-
 <h2>Bubble Plots of Token Usage by Model</h2>
 <div class="box">
     <p>
@@ -355,7 +334,7 @@
     <p>
         The second plot, the distribution of <code>sum_assistant_tokens</code>, also visualizes with the Kernel Density Estimate (KDE), where the majority of assistant tokens are clustered up to 700,000. While the majority of assistant responses involve a small number of tokens, there are occasional responses with a much higher token count.
     </p>
-    <img src="assets/V23.png" width="500" class="center" alt="sum_assistant_tokens Distribution">
+    <img src="assets/s2.png" width="500" class="center" alt="sum_assistant_tokens Distribution">
 </div>
 
 <h2>Distribution of context_tokens</h2>
@@ -363,7 +342,7 @@
     <p>
         The third plot, the distribution of <code>context_tokens</code>, also visualizes with the Kernel Density Estimate (KDE). It's similar to the first plot, where the majority of <code>context_tokens</code> values are near zero with a line extending to the 500,000 values. This means that in our dataset, the majority of entries have a low number of tokens (e.g., words, characters, or data units in each context), while only a small number of entries have a much higher token count.
     </p>
-    <img src="assets/v6.png" width="500" class="center" alt="context_tokens Distribution">
+    <img src="assets/s3.png" width="500" class="center" alt="context_tokens Distribution">
 </div>
 
 <h2>Language Proportion Pie Chart</h2>
@@ -374,7 +353,7 @@
     <p>
         This plot helps in model development by highlighting the language distribution, allowing developers to focus on optimizing models for prevalent languages. It also aids in model selection, as dealing with multilingual tasks sometimes requires model choices based on support for a particular language.
     </p>
-    <img src="assets/v7.png" width="500" class="center" alt="Language Proportion Pie Chart">
+    <img src="assets/s4.png" width="500" class="center" alt="Language Proportion Pie Chart">
 </div>
 
 <h2>Box Plots of Token Distribution by Model</h2>
@@ -385,7 +364,7 @@
     <p>
         These plots are useful in the model development stage by highlighting token usage consistency and outliers that could be used to optimize the handling of the tokens. They also contribute to model selection by comparing different models based on token efficiency.
     </p>
-    <img src="assets/v8.png" width="500" class="center" alt="Box Plots of Token Distribution by Model">
+    <img src="assets/s5.png" width="500" class="center" alt="Box Plots of Token Distribution by Model">
 </div>
 
 <h2>Violin Plot of sum_user_tokens by Model and is_code</h2>
@@ -396,10 +375,28 @@
     <p>
         This plot helps in model development for understanding the pattern of token usage when handling code and assists in model selection by pointing out models that manage efficiently with token-heavy tasks, especially for code.
     </p>
-    <img src="assets/v9.png" width="500" class="center" alt="Violin Plot of sum_user_tokens">
-    <br><img src="assets/v10.png" width="500" class="center" alt="Violin Plot of sum_user_tokens">
+    <img src="assets/s6.png" width="500" class="center" alt="Violin Plot of sum_user_tokens">
+    <br><img src="assets/s7.png" width="500" class="center" alt="Violin Plot of sum_user_tokens">
 </div>
-
+<h2>Scatter Plots of User Tokens vs Assistant Tokens</h2>
+<div class="box">
+    <p>
+        These are <strong>scatter plots</strong> showing the relationship between user tokens and assistant tokens. The first plot is colored by model, focusing on models with more than 2,000 occurrences, while the second plot is colored by language, highlighting languages with more than 1,000 occurrences. These plots help identify patterns in token usage across different models and languages.
+    </p>
+    <p>
+        The plots are useful for model development to optimize token handling based on specific models and languages, and for model selection by determining which models and languages are more efficient or better suited for token-heavy tasks.
+    </p>
+    <img src="assets/v12.png" width="500" class="center" alt="Scatter Plot Colored by Model">
+    
+</div>
+<h2>Histograms of Token Distribution by Language</h2>
+<div class="box">
+    <p>
+        These are <strong>histograms</strong> with a kernel density estimate, showing the distribution of user tokens (top plot) and assistant tokens (bottom plot) across languages that have more than 1,000 occurrences. Both plots reveal that for the majority of the interactions, regardless of language, just a few tokens are involved (between 0 and 10,000 tokens), with some outliers at higher token counts. We can further explore language-specific differences or outliers in token usage that might indicate trends in longer conversations.
+    </p>
+    <img src="assets/s1.png" width="500" class="center" alt="Histograms of Token Distribution by Language">
+    <br><img src="assets/v19.png" width="500" class="center" alt="Histograms of Token Distribution by Language">
+</div>
 
 
 <h1>Additional Exploratory Data Analysis (EDA)</h1>
