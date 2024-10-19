@@ -221,64 +221,6 @@
     <img src="assets/v3.png" width="500" class="center" alt="Boolean Columns Analysis">
 </div>
 
-<h2>Distribution of sum_user_tokens</h2>
-<div class="box">
-    <p>
-        The plot distribution of <code>sum_user_tokens</code> visualizes with the Kernel Density Estimate (KDE) where it shows that the majority of the token values are near zero, with a line extending toward higher values up to 500,000. This indicates that most users have relatively low token usage, while a smaller subset has significantly higher usage.
-    </p>
-    <img src="assets/V4.png" width="500" class="center" alt="sum_user_tokens Distribution">
-</div>
-
-<h2>Distribution of sum_assistant_tokens</h2>
-<div class="box">
-    <p>
-        The second plot, the distribution of <code>sum_assistant_tokens</code>, also visualizes with the Kernel Density Estimate (KDE), where the majority of assistant tokens are clustered up to 700,000. While the majority of assistant responses involve a small number of tokens, there are occasional responses with a much higher token count.
-    </p>
-    <img src="assets/v23.png" width="500" class="center" alt="sum_assistant_tokens Distribution">
-</div>
-
-<h2>Distribution of context_tokens</h2>
-<div class="box">
-    <p>
-        The third plot, the distribution of <code>context_tokens</code>, also visualizes with the Kernel Density Estimate (KDE). It's similar to the first plot, where the majority of <code>context_tokens</code> values are near zero with a line extending to the 500,000 values. This means that in our dataset, the majority of entries have a low number of tokens (e.g., words, characters, or data units in each context), while only a small number of entries have a much higher token count.
-    </p>
-    <img src="assets/v6.png" width="500" class="center" alt="context_tokens Distribution">
-</div>
-
-<h2>Language Proportion Pie Chart</h2>
-<div class="box">
-    <p>
-        The <strong>pie chart</strong> below displays the proportion of languages with over 1,000 occurrences in the dataset, with each segment being representative of a language. This is indicated with the size of the slice proportional to the count. The dominant proportion is English at almost 70%, followed by Russian, Chinese, and others.
-    </p>
-    <p>
-        This plot helps in model development by highlighting the language distribution, allowing developers to focus on optimizing models for prevalent languages. It also aids in model selection, as dealing with multilingual tasks sometimes requires model choices based on support for a particular language.
-    </p>
-    <img src="assets/v7.png" width="500" class="center" alt="Language Proportion Pie Chart">
-</div>
-
-<h2>Box Plots of Token Distribution by Model</h2>
-<div class="box">
-    <p>
-        These are <strong>box plots</strong> of the distribution of <code>sum_user_tokens</code> and <code>sum_assistant_tokens</code> for models with at least 2,000 occurrences. These box plots depict the dispersion in token usage for each model: the median represented by the central line of the box, interquartile range by the size of the box itself, and possible outliers as dots outside the whiskers.
-    </p>
-    <p>
-        These plots are useful in the model development stage by highlighting token usage consistency and outliers that could be used to optimize the handling of the tokens. They also contribute to model selection by comparing different models based on token efficiency.
-    </p>
-    <img src="assets/v8.png" width="500" class="center" alt="Box Plots of Token Distribution by Model">
-</div>
-
-<h2>Violin Plot of sum_user_tokens by Model and is_code</h2>
-<div class="box">
-    <p>
-        The following <strong>violin plot</strong> depicts the distribution of <code>sum_user_tokens</code> for each model, segregated based on the condition if <code>is_code</code> is true or false. The y-axis limits are set to a maximum of 10,000 for better clarity. Here, the violin plot shows the density and range of token usage; hence, one can get insights about how each model behaves with and without code input.
-    </p>
-    <p>
-        This plot helps in model development for understanding the pattern of token usage when handling code and assists in model selection by pointing out models that manage efficiently with token-heavy tasks, especially for code.
-    </p>
-    <img src="assets/v9.png" width="500" class="center" alt="Violin Plot of sum_user_tokens">
-    <br><img src="assets/v10.png" width="500" class="center" alt="Violin Plot of sum_user_tokens">
-</div>
-
 <h2>Correlation Heatmap of Token Counts</h2>
 <div class="box">
     <p>
@@ -383,6 +325,64 @@
     </p>
     <img src="assets/v22.png" width="500" class="center" alt="Joint Plot of User Tokens vs Assistant Tokens">
 </div>
+
+<h2>Distribution of sum_user_tokens</h2>
+<div class="box">
+    <p>
+        The plot distribution of <code>sum_user_tokens</code> visualizes with the Kernel Density Estimate (KDE) where it shows that the majority of the token values are near zero, with a line extending toward higher values up to 500,000. This indicates that most users have relatively low token usage, while a smaller subset has significantly higher usage.
+    </p>
+    <img src="assets/V4.png" width="500" class="center" alt="sum_user_tokens Distribution">
+</div>
+<h2>Distribution of sum_assistant_tokens</h2>
+<div class="box">
+    <p>
+        The second plot, the distribution of <code>sum_assistant_tokens</code>, also visualizes with the Kernel Density Estimate (KDE), where the majority of assistant tokens are clustered up to 700,000. While the majority of assistant responses involve a small number of tokens, there are occasional responses with a much higher token count.
+    </p>
+    <img src="assets/V23.png" width="500" class="center" alt="sum_assistant_tokens Distribution">
+</div>
+
+<h2>Distribution of context_tokens</h2>
+<div class="box">
+    <p>
+        The third plot, the distribution of <code>context_tokens</code>, also visualizes with the Kernel Density Estimate (KDE). It's similar to the first plot, where the majority of <code>context_tokens</code> values are near zero with a line extending to the 500,000 values. This means that in our dataset, the majority of entries have a low number of tokens (e.g., words, characters, or data units in each context), while only a small number of entries have a much higher token count.
+    </p>
+    <img src="assets/v6.png" width="500" class="center" alt="context_tokens Distribution">
+</div>
+
+<h2>Language Proportion Pie Chart</h2>
+<div class="box">
+    <p>
+        The <strong>pie chart</strong> below displays the proportion of languages with over 1,000 occurrences in the dataset, with each segment being representative of a language. This is indicated with the size of the slice proportional to the count. The dominant proportion is English at almost 70%, followed by Russian, Chinese, and others.
+    </p>
+    <p>
+        This plot helps in model development by highlighting the language distribution, allowing developers to focus on optimizing models for prevalent languages. It also aids in model selection, as dealing with multilingual tasks sometimes requires model choices based on support for a particular language.
+    </p>
+    <img src="assets/v7.png" width="500" class="center" alt="Language Proportion Pie Chart">
+</div>
+
+<h2>Box Plots of Token Distribution by Model</h2>
+<div class="box">
+    <p>
+        These are <strong>box plots</strong> of the distribution of <code>sum_user_tokens</code> and <code>sum_assistant_tokens</code> for models with at least 2,000 occurrences. These box plots depict the dispersion in token usage for each model: the median represented by the central line of the box, interquartile range by the size of the box itself, and possible outliers as dots outside the whiskers.
+    </p>
+    <p>
+        These plots are useful in the model development stage by highlighting token usage consistency and outliers that could be used to optimize the handling of the tokens. They also contribute to model selection by comparing different models based on token efficiency.
+    </p>
+    <img src="assets/v8.png" width="500" class="center" alt="Box Plots of Token Distribution by Model">
+</div>
+
+<h2>Violin Plot of sum_user_tokens by Model and is_code</h2>
+<div class="box">
+    <p>
+        The following <strong>violin plot</strong> depicts the distribution of <code>sum_user_tokens</code> for each model, segregated based on the condition if <code>is_code</code> is true or false. The y-axis limits are set to a maximum of 10,000 for better clarity. Here, the violin plot shows the density and range of token usage; hence, one can get insights about how each model behaves with and without code input.
+    </p>
+    <p>
+        This plot helps in model development for understanding the pattern of token usage when handling code and assists in model selection by pointing out models that manage efficiently with token-heavy tasks, especially for code.
+    </p>
+    <img src="assets/v9.png" width="500" class="center" alt="Violin Plot of sum_user_tokens">
+    <br><img src="assets/v10.png" width="500" class="center" alt="Violin Plot of sum_user_tokens">
+</div>
+
 
 
 <h1>Additional Exploratory Data Analysis (EDA)</h1>
