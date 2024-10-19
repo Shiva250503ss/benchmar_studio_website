@@ -23,17 +23,34 @@
   </head>
   <body>
     <nav id="desktop-nav">
-      <div class="logo">Benchmark Studio</div>
-      <div>
-        <ul class="nav-links">
-          <li><a href="index.html">Introduction</a></li>
-          <li><a href="EDA.html">Data Exploration</a></li>
-          <li><a href="">Models Implemented</a></li>
-          <li><a href="">Results</a></li>
-          <li><a href="team.html">Team</a></li>
-        </ul>
-      </div>
-    </nav>
+        <div class="logo">Benchmark Studio</div>
+        <div>
+          <ul class="nav-links">
+            <li><a href="index.html">Introduction</a></li>
+            <li><a href="EDA.html">Data Exploration</a></li>
+            <li><a href="">Models Implemented</a></li>
+            <li><a href="">Results</a></li>
+            <li><a href="team.html">Team</a></li>
+          </ul>
+        </div>
+      </nav>
+      <nav id="hamburger-nav">
+        <div class="logo">Benchmark Studio</div>
+        <div class="hamburger-menu">
+          <div class="hamburger-icon" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="menu-links">
+            <li><a href="#about" onclick="toggleMenu()">Introduction</a></li>
+            <li><a href="" onclick="toggleMenu()">Data Exploration</a></li>
+            <li><a href="" onclick="toggleMenu()">Models Implemented</a></li>
+            <li><a href="" onclick="toggleMenu()">Results</a></li>
+            <li><a href="" onclick="toggleMenu()">Team</a></li>
+          </div>
+        </div>
+      </nav>    
     <section id="background-image-section1"></section>
     <br>
     <h1 class="title">LLM Models Performance Comparison Analysis</h1>
