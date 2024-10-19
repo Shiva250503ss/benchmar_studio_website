@@ -34,24 +34,7 @@
         </ul>
       </div>
     </nav>
-    <nav id="hamburger-nav">
-      <div class="logo">Benchmark Studio</div>
-      <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="menu-links">
-          <li><a href="#about" onclick="toggleMenu()">Introduction</a></li>
-          <li><a href="" onclick="toggleMenu()">Data Exploration</a></li>
-          <li><a href="" onclick="toggleMenu()">Models Implemented</a></li>
-          <li><a href="" onclick="toggleMenu()">Results</a></li>
-          <li><a href="" onclick="toggleMenu()">Team</a></li>
-        </div>
-      </div>
-    </nav>
-    <section id="background-image-section1"></section>
+    <section id="background-image-section"></section>
     <br>
     <h1 class="title">LLM Models Performance Comparison Analysis</h1>
     <!DOCTYPE html>
@@ -136,6 +119,14 @@
     <p class="placeholder"><img src="assets/winner.png" width="1000" height="1000" class="center"></p>
 </div>
 
+<h2>Extracting Conversation Metadata</h2>
+<div class="box">
+    <p>
+        Here we define a function, <code>extract_conv_metadata</code>, that does safe parsing on <code>'conv_metadata'</code>. Then, it extracts the appropriate token information for the winning model through user tokens, assistant tokens, and context tokens. We use this function to apply to every row in the DataFrame and create new columns out of the metadata extracted. Finally, we join these new columns with the original DataFrame, drop the original <code>'conv_metadata'</code> column, and display the updated DataFrame without the index.
+    </p>
+    <p class="placeholder"><img src="assets/extract1.png" width="1000" height="1000" class="center"></p>
+</div>
+
 <h2>Filtering Out Unknown Languages</h2>
 <div class="box">
     <p>
@@ -151,8 +142,8 @@
     </p>
     <p class="placeholder"><img src="assets/unique.png" width="1000" height="1000" class="center"></p>
 </div>
-
-<!-- <h2>Extracting Deduplication Tags</h2>
+<!-- 
+<h2>Extracting Deduplication Tags</h2>
 <div class="box">
     <p>
         Here, we define a function <code>extract_dedup_tag</code>, which safely evaluates the column <code>'dedup_tag'</code> to extract the values for keys <code>'high_freq'</code> and <code>'sampled'</code>. Then, we apply this function onto every row of column <code>'dedup_tag'</code>, creating two new columns: <code>'dedup_tag_high_freq'</code> and <code>'dedup_tag_sampled'</code>. Later, we do not need <code>'dedup_tag'</code>, and hence we print the updated DataFrame.
@@ -196,9 +187,248 @@
         The images above display the structure and content of the datasets before and after cleaning. As observed, the new dataset has unwanted columns removed, timestamps converted to readable dates, and entries with unknown languages filtered out.
     </p>
 </div>
+<h1>Exploratory Data Analysis (EDA)</h1>
 
+<h2>Model Distribution Plot and Language Count Plot</h2>
+<div class="box">
+    <p>
+        In the plot distribution of models, it visualizes which models are most frequent and which are less common. Each bar represents a model, and its length corresponds to the count of occurrences of that model.
+        The second plot represents the count of different languages that have more than 50 counts. We are filtering out languages with only more than 50 counts to make the plots easier to focus on the more frequently occurring ones; otherwise, the plot will be cluttered.
+    </p>
+    <img src="assets/v1.png" width="500" class="center" alt="Model Distribution Plot">
+    <br><img src="assets/v2.png" width="500" class="center" alt="Language Count Plot">
+</div>
+
+
+<h2>Analysis of Boolean Columns</h2>
+<div class="box">
+    <p>
+        The rest of the graphs explain the Boolean columns:
+    </p>
+    <ul>
+        <li><strong>is_code:</strong> There is a higher count in <em>False</em>, indicating that the dataset is not associated with code or programming tasks, suggesting a focus on non-technical content.</li>
+        <li><strong>is_refusal:</strong> There is a higher count in <em>False</em>, indicating that inputs were accepted and users are responsive to input.</li>
+        <li><strong>information_fulfillment:</strong> There is a higher count in <em>False</em>, indicating that the model's information needs were not met.</li>
+        <li><strong>math:</strong> There is a higher count in <em>False</em>, indicating a lack of mathematical proficiency, suggesting that it doesn't involve mathematical reasoning.</li>
+        <li><strong>specificity:</strong> There is a higher count in <em>True</em>, indicating that the model information is specific, providing detailed insights.</li>
+        <li><strong>domain_knowledge:</strong> There is a higher count in <em>True</em>, indicating that the model content is strong in particular fields.</li>
+        <li><strong>complexity:</strong> There is a higher count in <em>False</em>, indicating that the complexity of the topic is addressed in a straightforward manner, implying a simpler approach to questions.</li>
+        <li><strong>problem_solving:</strong> There is a higher count in <em>False</em>, indicating that no problem-solving is clear, which may indicate a lack of critical thinking.</li>
+        <li><strong>critical_thinking:</strong> There is a higher count in <em>False</em>, indicating a lack of creativity shown in the model's response.</li>
+        <li><strong>technical_accuracy:</strong> There is a higher count in <em>True</em>, indicating that the model provides technical information that is accurate and reliable.</li>
+        <li><strong>real_world:</strong> There is a higher count in <em>True</em>, indicating that the model content connects with real-world applications.</li>
+    </ul>
+    <img src="assets/v3.png" width="500" class="center" alt="Boolean Columns Analysis">
+</div>
+
+<h2>Distribution of sum_user_tokens</h2>
+<div class="box">
+    <p>
+        The plot distribution of <code>sum_user_tokens</code> visualizes with the Kernel Density Estimate (KDE) where it shows that the majority of the token values are near zero, with a line extending toward higher values up to 500,000. This indicates that most users have relatively low token usage, while a smaller subset has significantly higher usage.
+    </p>
+    <img src="assets/V4.png" width="500" class="center" alt="sum_user_tokens Distribution">
+</div>
+
+<h2>Distribution of sum_assistant_tokens</h2>
+<div class="box">
+    <p>
+        The second plot, the distribution of <code>sum_assistant_tokens</code>, also visualizes with the Kernel Density Estimate (KDE), where the majority of assistant tokens are clustered up to 700,000. While the majority of assistant responses involve a small number of tokens, there are occasional responses with a much higher token count.
+    </p>
+    <img src="assets/v5.png" width="500" class="center" alt="sum_assistant_tokens Distribution">
+</div>
+
+<h2>Distribution of context_tokens</h2>
+<div class="box">
+    <p>
+        The third plot, the distribution of <code>context_tokens</code>, also visualizes with the Kernel Density Estimate (KDE). It's similar to the first plot, where the majority of <code>context_tokens</code> values are near zero with a line extending to the 500,000 values. This means that in our dataset, the majority of entries have a low number of tokens (e.g., words, characters, or data units in each context), while only a small number of entries have a much higher token count.
+    </p>
+    <img src="assets/v6.png" width="500" class="center" alt="context_tokens Distribution">
+</div>
+
+<h2>Language Proportion Pie Chart</h2>
+<div class="box">
+    <p>
+        The <strong>pie chart</strong> below displays the proportion of languages with over 1,000 occurrences in the dataset, with each segment being representative of a language. This is indicated with the size of the slice proportional to the count. The dominant proportion is English at almost 70%, followed by Russian, Chinese, and others.
+    </p>
+    <p>
+        This plot helps in model development by highlighting the language distribution, allowing developers to focus on optimizing models for prevalent languages. It also aids in model selection, as dealing with multilingual tasks sometimes requires model choices based on support for a particular language.
+    </p>
+    <img src="assets/v7.png" width="500" class="center" alt="Language Proportion Pie Chart">
+</div>
+
+<h2>Box Plots of Token Distribution by Model</h2>
+<div class="box">
+    <p>
+        These are <strong>box plots</strong> of the distribution of <code>sum_user_tokens</code> and <code>sum_assistant_tokens</code> for models with at least 2,000 occurrences. These box plots depict the dispersion in token usage for each model: the median represented by the central line of the box, interquartile range by the size of the box itself, and possible outliers as dots outside the whiskers.
+    </p>
+    <p>
+        These plots are useful in the model development stage by highlighting token usage consistency and outliers that could be used to optimize the handling of the tokens. They also contribute to model selection by comparing different models based on token efficiency.
+    </p>
+    <img src="assets/v8.png" width="500" class="center" alt="Box Plots of Token Distribution by Model">
+</div>
+
+<h2>Violin Plot of sum_user_tokens by Model and is_code</h2>
+<div class="box">
+    <p>
+        The following <strong>violin plot</strong> depicts the distribution of <code>sum_user_tokens</code> for each model, segregated based on the condition if <code>is_code</code> is true or false. The y-axis limits are set to a maximum of 10,000 for better clarity. Here, the violin plot shows the density and range of token usage; hence, one can get insights about how each model behaves with and without code input.
+    </p>
+    <p>
+        This plot helps in model development for understanding the pattern of token usage when handling code and assists in model selection by pointing out models that manage efficiently with token-heavy tasks, especially for code.
+    </p>
+    <img src="assets/v9.png" width="500" class="center" alt="Violin Plot of sum_user_tokens">
+    <br><img src="assets/v10.png" width="500" class="center" alt="Violin Plot of sum_user_tokens">
+</div>
+
+<h2>Correlation Heatmap of Token Counts</h2>
+<div class="box">
+    <p>
+        This is a <strong>heatmap</strong> visualizing the <strong>correlation matrix</strong> for the numerical columns: <code>sum_user_tokens</code>, <code>sum_assistant_tokens</code>, and <code>context_tokens</code>. The color intensity and numbers in the cells show the strength of the correlation that goes from -1.0 (negative correlation) up to 1.0 (positive correlation). It can be seen from this plot that <code>context_tokens</code> are highly positively correlated with <code>sum_user_tokens</code> with a value of 0.84, while <code>sum_assistant_tokens</code> is moderately correlated with the other columns.
+    </p>
+    <p>
+        This plot is useful for understanding the relationship of token counts in various model development stages and model selection, especially if the goal is to tune models according to their token efficiency and correlation patterns.
+    </p>
+    <img src="assets/V11.png" width="500" class="center" alt="Correlation Heatmap of Token Counts">
+</div>
+
+<h2>Scatter Plots of User Tokens vs Assistant Tokens</h2>
+<div class="box">
+    <p>
+        These are <strong>scatter plots</strong> showing the relationship between user tokens and assistant tokens. The first plot is colored by model, focusing on models with more than 2,000 occurrences, while the second plot is colored by language, highlighting languages with more than 1,000 occurrences. These plots help identify patterns in token usage across different models and languages.
+    </p>
+    <p>
+        The plots are useful for model development to optimize token handling based on specific models and languages, and for model selection by determining which models and languages are more efficient or better suited for token-heavy tasks.
+    </p>
+    <img src="assets/v12.png" width="500" class="center" alt="Scatter Plot Colored by Model">
+    
+</div>
+
+<h2>Stacked Bar Plot of Language Distribution Across Models</h2>
+<div class="box">
+    <p>
+        This is a <strong>stacked bar plot</strong> showing the distribution of languages across different models. Each bar illustrates a model, while the hues in that bar show the counts across different languages, for example, English, Chinese, Spanish. The plot shows how frequently each of the languages appears in interactions for each model, with <strong>English</strong> dominating most of the models.
+    </p>
+    <p>
+        This plot is useful for both model selection by highlighting which models perform well with a particular language and for model development to determine the language handling capability, aiming to ensure that the models are optimized for multilingual tasks.
+    </p>
+    <img src="assets/V13.png" width="500" class="center" alt="Stacked Bar Plot of Language Distribution">
+</div>
+
+<h2>Line Plot of Token Trends Over Time</h2>
+<div class="box">
+    <p>
+        This is the <strong>line plot</strong> of the trends of user tokens, assistant tokens, and context tokens over time. The x-axis represents the time periods while the y-axis shows the total token count for each category. The orange line (assistant tokens) peaks the highest, indicating that assistant models used more tokens compared to user and context tokens.
+    </p>
+    <p>
+        This provides insight into token usage patterns, helpful in the development of models by keeping track of token efficiency or model selection in finding out which models can handle certain token-intensive tasks efficiently over time. It can also assist in the optimization of token management.
+    </p>
+    <img src="assets/V14.png" width="500" class="center" alt="Line Plot of Token Trends Over Time">
+</div>
+
+<h2>Count Plot of Model Refusals</h2>
+<div class="box">
+    <p>
+        A <strong>count plot</strong> comparing the number of interactions for each of the different models, based on whether the model refused to answer (<code>is_refusal</code>). Green bars are for interactions where the model responded, and orange bars represent refusals.
+    </p>
+    <p>
+        This plot helps to identify models that are most likely to refuse responses. For example, the refusal rate of <code>chatgpt-4-0-latest</code> is higher. Hence, this provides guidance on model selection: select models that would be more dependable with respect to response, and in model development: investigate why certain models refuse and how to reduce occurrences of such.
+    </p>
+    <img src="assets/V15.png" width="500" class="center" alt="Count Plot of Model Refusals">
+</div>
+
+<h2>Language Word Cloud</h2>
+<div class="box">
+    <p>
+        The word cloud below visualizes the most common languages in this dataset. In the word cloud, the size of each language name represents the frequency of that language within the data. For example, English, Chinese, and Russian are bigger compared to the other names because they occur more frequently in the dataset. Smaller words like Swedish, Dutch, and Tamil represent less frequency. This visualization effectively shows the distribution and variation in the use of language in the dataset.
+    </p>
+    <img src="assets/V16.png" width="500" class="center" alt="Language Word Cloud">
+</div>
+
+<h2>Model Name Word Cloud</h2>
+<div class="box">
+    <p>
+        The most frequent models, like "chatgpt-4.0-latest", "gpt-4.0-2024-08-06", and "llama-3.1-70b-instruct", are larger since they appear more often in the dataset. Less frequent models like "gemini-1.5-pro-api-0514" and "deepseek-v2-api-0628" are in smaller text to show how much less they appear compared to others.
+    </p>
+    <img src="assets/V17.png" width="500" class="center" alt="Model Name Word Cloud">
+</div>
+
+
+<h2>Histograms of Token Distribution by Language</h2>
+<div class="box">
+    <p>
+        These are <strong>histograms</strong> with a kernel density estimate, showing the distribution of user tokens (top plot) and assistant tokens (bottom plot) across languages that have more than 1,000 occurrences. Both plots reveal that for the majority of the interactions, regardless of language, just a few tokens are involved (between 0 and 10,000 tokens), with some outliers at higher token counts. We can further explore language-specific differences or outliers in token usage that might indicate trends in longer conversations.
+    </p>
+    <img src="assets/v18.png" width="500" class="center" alt="Histograms of Token Distribution by Language">
+    <br><img src="assets/v19.png" width="500" class="center" alt="Histograms of Token Distribution by Language">
+</div>
+
+<h2>Bubble Plots of Token Usage by Model</h2>
+<div class="box">
+    <p>
+        The two above <strong>bubble plots</strong> outline the relationship of token usage (user and assistant) with different models. In each of these plots, the size of each bubble denotes the number of tokens, with larger-sized bubbles indicating higher token usage. The first plot shows the relationship between user tokens and models, and the second between assistant tokens and models.
+    </p>
+    <p>
+        These plots are informative for understanding different model behaviors in light of variable numbers of input tokens and could further drive model development by identifying models that manage tokens more efficiently, as well as model selection by picking out models suitable for token-intensive tasks.
+    </p>
+    <img src="assets/v20.png" width="500" class="center" alt="Bubble Plot of User Tokens by Model">
+    <img src="assets/v21.png" width="500" class="center" alt="Bubble Plot of Assistant Tokens by Model">
+</div>
+
+<h2>Joint Plot of User Tokens vs Assistant Tokens</h2>
+<div class="box">
+    <p>
+        This is a <strong>joint plot</strong> showing the relation between user tokens and assistant tokens. The scatter plot in the middle shows the distribution of these tokens, and the histograms on top and right show the frequency distributions for user and assistant tokens, respectively.
+    </p>
+    <p>
+        This plot is useful for model development and model selection, as it shows the relation between how many input (user tokens) are given and how many output (assistant tokens) are returned by various models. The plot can help in optimizing token usage for efficiency and locating models that handle inputs or outputs with a large count of tokens efficiently.
+    </p>
+    <img src="assets/v22.png" width="500" class="center" alt="Joint Plot of User Tokens vs Assistant Tokens">
+</div>
+
+
+<h1>Additional Exploratory Data Analysis (EDA)</h1>
+
+<h2>Model Comparison Based on Average Accuracy</h2>
+<div class="box">
+    <p>
+        This section compares the top 10 models with the highest average accuracy and the bottom 5 models with the lowest average accuracy. Various plots are generated to visualize their performance metrics like Win Rate, humaneval-python scores, Java scores, JavaScript variability, and C++ performance distribution.
+    </p>
+    <p>
+        Below are the plots generated from the analysis:
+    </p>
+    <div class="image-container">
+        <img src="assets/e1.png" alt="Win Rate Comparison">
+        <img src="assets/e2.png" alt="humaneval-python Performance">
+        <img src="assets/e3.png" alt="Java Performance">
+        <img src="assets/e4.png" alt="JavaScript Variability">
+        <img src="assets/e5.png" alt="C++ Performance Distribution">
+    </div>
+</div>
+
+<h2>Model Performance Metrics Analysis</h2>
+<div class="box">
+    <p>
+        This section analyzes various performance metrics of models, such as Average WER, RTFx, AMI, Earnings22, Gigaspeech, LS Clean, LS Other, SPGISpeech, Tedlium, and Voxpopuli. Different types of plots are generated to visualize these metrics across different models.
+    </p>
+    <p>
+        Below are the plots generated from the analysis:
+    </p>
+    <div class="image-container">
+        <img src="assets/e6.png" alt="Average WER">
+        <img src="assets/e7.png" alt="RTFx">
+        <img src="assets/e8.png" alt="AMI Scores">
+        <img src="assets/e9.png" alt="Earnings 2022">
+        <img src="assets/e10.png" alt="Gigaspeech Scores Distribution">
+        <img src="assets/e11.png" alt="LS Clean Performance">
+        <img src="assets/e12.png" alt="LS Other Performance">
+        <img src="assets/e13.png" alt="SPGISpeech Variability">
+        <img src="assets/e14.png" alt="Tedlium Performance">
+        <img src="assets/e15.png" alt="Voxpopuli Scores Distribution">
+    </div>
+</div>
+<br><br><br><br>
+<footer>
+    <p style="color: #ffffff;">Copyright &#169; 2024 Benchmark Studio. All Rights Reserved.</p>
+</footer>
 </body>
-</html>
-
     </body>
     </html>
