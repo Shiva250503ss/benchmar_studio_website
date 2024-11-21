@@ -110,6 +110,15 @@ a:hover {
   text-underline-offset: 1rem;
   text-decoration-color: rgb(181, 181, 181);
 }
+#background-image-section-home {
+  background-image: url('assets/bg-intro.webp'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 80vh;
+  margin: 0;
+  padding: 0;
+}
 #background-image-section {
   background-image: url('assets/bg1.jpg'); 
   background-size: cover;
@@ -120,7 +129,7 @@ a:hover {
   padding: 0;
 }
 #background-image-section1 {
-  background-image: url('assets/bgeda.jpg'); 
+  background-image: url('assets/bg4.jpg'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

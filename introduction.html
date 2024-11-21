@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Benchmark Studio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+  </head>
+  <body>
+    <nav id="desktop-nav">
+      <div class="logo">Benchmark Studio</div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#about">Introduction</a></li>
+          <li><a href="EDA.html">Data Exploration</a></li>
+          <li><a href="">Models Implemented</a></li>
+          <li><a href="">Results</a></li>
+          <li><a href="team.html">Team</a></li>
+        </ul>
+      </div>
+    </nav>
+    <nav id="hamburger-nav">
+      <div class="logo">Benchmark Studio</div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <li><a href="#about" onclick="toggleMenu()">Introduction</a></li>
+          <li><a href="" onclick="toggleMenu()">Data Exploration</a></li>
+          <li><a href="" onclick="toggleMenu()">Models Implemented</a></li>
+          <li><a href="" onclick="toggleMenu()">Results</a></li>
+          <li><a href="" onclick="toggleMenu()">Team</a></li>
+        </div>
+      </div>
+    </nav>
+    <section id="background-image-section-home"></section>
+    <br>
+    <h1 class="title">LLM Models Performance Comparison Analysis</h1>
+    <section id="about">
+      
+      <h5 class="heading">Introduction</h5>
+      <br>
+
+      <div class="section-container" style="display: flex; justify-content: space-between;">
+        <div class="about-details-container" style="flex: 3;">
+            <div class="details-container">
+                <h3>Nature of the Project</h3>
+                <div class="text-container">
+                    <p>
+                      Currently, Large Language Models constitute the center of Generative Artificial Intelligence, which is a fast-growing area. These models understand text, voice, or image prompts and generate content with each prompt accordingly. The project aims to find the best LLM for a specific task's performance by analyzing the benchmark results for various LLMs. This will mainly focus on the factors and how each contributes to the performance of LLMs using exploratory data analysis. This would be done using publicly available data from various research papers, model repositories, and benchmark reports. Quite a few AI models have been developed in this era of AI, especially by giants like Google, OpenAI, Amazon, and Meta. Choosing the best among them has hence been an exhausting task. This analysis will minimize the time a user has to spend selecting a model for themselves; instead, it will get them the best pick that suits the work at hand.
+                    </p>
+                    <br>
+                    <p>  It will also predict which model will last longer and give better responses, considering past evidence and other variables. It is expected that from this analysis, valuable insight will be gained into the efficiency and scalability of various LLM architectures, hence contributing to developing more efficient and resource-effective models. Comparisons between open-source and proprietary models will also be explored.
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="section__pic-container">
+            <img
+                src="assets/exploratory-data-analysis-744x400-1-ezgif.com-webp-to-jpg-converter.jpg"
+                alt="Profile picture"
+                class="about-pic"
+                style="width: 100%; height: auto; border-radius: 2rem;"
+            />
+        </div>
+      </div>
+      <br><br><br><br> 
+      <div class="section-container" style="display: flex; justify-content: space-between;">
+        <div class="section__pic-container">
+            <img
+                src="assets/665df055e279be718fb36962_00_evidently_llm_release-min.png"
+                alt="Profile picture"
+                class="about-pic"
+                style="width: 100%; height: auto; border-radius: 2rem;"
+            />
+        </div>
+
+        <div class="about-details-container" style="flex: 3;">
+            <div class="details-container">
+                <h3>Why's it important?
+                </h3>
+                <div class="text-container">
+                    <p>
+                      Appropriate model selection is considered a challenge to tasks in rapid LLM development. Proper LLM model selection will reduce the time and cost of development associated with using a GPU. Comprehension of the performance trends in LLMs will help us understand where they perform well and poorly. A critical task will be finding hidden patterns in performance metrics data. Therefore, This optimal model may be pitted against various industry standards to find specific tasks for which it's optimized, narrowing down the most robust and efficient models. Since multiple architectures, such as Encoder-Decoder models, Transformers, or LSTMs, are being used in different LLMs, the question remains as to which one works best for a particular application. While the subtlety would be known to machine learning engineers and AI scientists, ordinary users of AI tools would know little about which model fits their application; hence, such a use case needed to be developed.
+                    </p>
+                    <br>
+                    <p>
+                      However, for an enterprise, any generative AI model provisioned for their daily actions should be to serve and maximize profitability. Thus, one needs to be more considerate of various factors and results of benchmarking when choosing the suitable AI model for use within a business instead of recognizing the brand. This helps identify significant pain points of LLMs for future consideration to develop the same.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br> 
+    <div class="section-container" style="display: flex; justify-content: space-between;">
+      <div class="about-details-container" style="flex: 3;">
+          <div class="details-container">
+              <h3>Who's affected?</h3>
+              <div class="text-container">
+                  <p>
+                    This analysis will enable data scientists and AI engineers to recognize their weaknesses and work on them for better outputs. It shall help businesses make informed decisions regarding the models that best suit their products. The same thing would be helpful at the academic level to provide insights from previous models and theories to the researchers and students. More accurate enhancements of the LLM models shall solve big and complicated problems, specifically in healthcare, where significant solutions can be provided. They will safely improve the interaction with customers in financial institutions, besides aiding in assessing and making decisions on risks. For the startups, they reduce the hustle of workflows by automating tasks, hence reducing workers. Developers can integrate large language models into AI applications, improving user experience and profitability, particularly within e-commerce and consultancy. Such analysis will also help the open-source community seek solutions to such models amidst various day-to-day problems. It will also enable them to inspire new ideas for startups.
+                  </p>
+              </div>
+          </div>
+      </div>
+      <div class="section__pic-container">
+          <img
+              src="assets/header-ezgif.com-webp-to-jpg-converter.jpg"
+              alt="Profile picture"
+              class="about-pic"
+              style="width: 100%; height: auto; border-radius: 2rem;"
+          />
+      </div>
+    </div>
+    <br><br><br><br>
+    <div class="section-container" style="display: flex; justify-content: space-between;">
+      <div class="section__pic-container">
+          <img
+              src="assets/img_blog_BP-PB-Evaluating-Large-Language-Models_-A-Complete-Guide_new-primary-ezgif.com-webp-to-jpg-converter.jpg"
+              alt="Profile picture"
+              class="about-pic"
+              style="width: 100%; height: auto; border-radius: 2rem;"
+          />
+      </div>
+
+      <div class="about-details-container" style="flex: 3;">
+          <div class="details-container">
+              <h3>​What has been done so far and what gaps remain?</h3>
+              <div class="text-container">
+                  <p>
+                    While a few tools or methodologies exist to compare the few popularly used LLMs, most need to be improved in predictability. Therefore, the project aims to identify the available LLMs and analyze the performance metrics across various benchmarks: complex datasets involving model architectures and training parameters that are often not available in a well-structured format. Most analyses so far need more comparisons regarding efficiency, accuracy, scalability, model size, and token size. Current models also do not address the language-dependent capabilities of LLMs. Few studies tried testing models varied for generative AI capabilities: adversarial robustness, coding, following instructions, and math and language skills. These involve, for example, manual evaluations by various prompts or subjective metrics that may introduce bias and limit generalizability. Instead, a more systematic and data-driven approach is required to evaluate LLMs, which will give better insights into performance and reduce the time spent executing the same prompt on various models. Addressing these limitations, this project will be able to provide critical insights into the choice of LLM and its performance.
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+  <br><br><br><br> 
+  <div class="section-container" style="display: flex; justify-content: space-between;">
+    <div class="about-details-container" style="flex: 3;">
+        <div class="details-container">
+            <h3>Queries Related to Dataset</h3>
+            <div class="text-container">
+              <ol>
+                <li>On what attributes does the prediction of LLM performance depend?</li>
+                <li>How does an LLM behave with respect to different languages utilized in a conversation?</li>
+                <li>Does the model perform radically different while generating code snippets than general text?</li>
+                <li>How often and for what reasons do models provide wrong answers?</li>
+                <li>How does the performance of an LLM vary with respect to the turn number within a prompt?</li>
+                <li>How are the prompt tokens related to the LLM performance?</li>
+                <li>In what way is the performance of LLMs different from deduplication tags?</li>
+                <li>Which models exhibit incremental improvement on all task categories?</li>
+                <li>Is any bias observed in model performance with respect to the language or category of a task?</li>
+                <li>Are there any models that are most likely to reject the tasks, and for what reason - due to improved overall performance or ethical reasons?</li>
+            </ol>
+            </div>
+        </div>
+    </div>
+    <!-- Right Column for Image -->
+    <div class="section__pic-container" >
+      <img
+      src="assets/question-mark-300x300.jpg"
+      alt="Profile picture"
+      class="about-pic"
+      style="width: 350px; height: 350px; border-radius: 2rem;"
+  />
+    </div>
+  </div>
+</div>
+    <br><br><br><br>
+    <footer>
+      <p style="color: #ffffff;">Copyright &#169; 2024 Benchmark Studio. All Rights Reserved.</p>
+  </footer>
+  </body>
+
+</html>
