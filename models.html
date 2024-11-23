@@ -30,7 +30,7 @@
             <li><a href="introduction.html">Introduction</a></li>
             <li><a href="EDA.html">Data Exploration</a></li>
             <li><a href="models.html">Models Implemented</a></li>
-            <li><a href="">Results</a></li>
+            <li><a href="">Conclusion</a></li>
             <li><a href="team.html">Team</a></li>
           </ul>
         </div>
@@ -47,12 +47,12 @@
             <li><a href="#about" onclick="toggleMenu()">Introduction</a></li>
             <li><a href="" onclick="toggleMenu()">Data Exploration</a></li>
             <li><a href="" onclick="toggleMenu()">Models Implemented</a></li>
-            <li><a href="" onclick="toggleMenu()">Results</a></li>
+            <li><a href="" onclick="toggleMenu()">Conclusion</a></li>
             <li><a href="" onclick="toggleMenu()">Team</a></li>
           </div>
         </div>
       </nav>    
-    <section id="background-image-section1"></section>
+    <section id="background-image-section2"></section>
     <br>
     <h1 class="title">LLM Models Performance Comparison Analysis</h1>
     <!DOCTYPE html>
@@ -83,363 +83,140 @@
 </head>
 <body>
 
-<h1>Models Implementation</h1>
-
-<h2>Fetching and Saving Battle Data</h2>
-<div class="box">
-    <p>
-        Here, we have fetched the latest battle data from the external source using the <code>requests</code> library. We first saved the JSON to a local file by the name <code>local_file_name.json</code>. Then, we loaded this JSON into a pandas DataFrame and sorted it according to the timestamp, <code>tstamp</code>, in ascending order. After sorting, we saved the DataFrame as a CSV file named <code>battles_data.csv</code>. The verification at the end demonstrates once more that the data has been saved to the necessary file for further analysis.
-    </p>
-    <p class="placeholder">
-        <img src="assets/fetch.png" width="500" class="center">
-    </p>
-</div>
 
 
-<h2>Converting Unix Timestamps to Readable Dates</h2>
-<div class="box">
-    <p>
-        This cell converts Unix timestamps in seconds into a more readable date format (YYYY-MM-DD) for easier analysis in a DataFrame. For instance, <code>1609459200</code> will represent in this format as <code>2021-01-01</code>.
-    </p>
-    <p class="placeholder"><img src="assets/tstam.png" width="1000" class="center"></p>
-</div>
-
-<h2>Extracting Month and Year from Timestamp</h2>
-<div class="box">
-    <p>
-        First, we convert the <code>'tstamp'</code> column to a proper datetime format using <code>pd.to_datetime</code>. Then, we create a new column called <code>'month_year'</code>, which extracts the month and year from the timestamp and stores it as a period, say <code>'2024-08'</code>. We then fetch all the unique month-year combinations and convert them into a list. Finally, for further use or analysis, this list of unique month-year combinations is displayed:
-    </p>
-    <p class="placeholder"><img src="assets/tstamp2.png" width="1000" height="1000" class="center"></p>
-</div>
-
-<h2>Extracting Unique Dates</h2>
-<div class="box">
-    <p>
-        Here, we will extract the unique dates in the <code>'tstamp'</code> column from the filtered DataFrame by changing the datetime values to date format. We then convert these unique dates into a list and display the list of unique dates for further analysis or use.
-    </p>
-    <p class="placeholder"><img src="assets/uniquedate.png" width="1000" height="1000" class="center"></p>
-</div>
-
-<h2>Excluding Specific Dates from DataFrame</h2>
-<div class="box">
-    <p>
-        In this cell, the code imports the <code>datetime</code> module, where it excludes the specific dates from a DataFrame and filters that DataFrame to remove any rows that contain these excluded dates. The certain dates that are August 1, 2, 3 in 2024 are omitted from analysis, while the data includes only the time period between Aug 4 to 14 in 2024.
-    </p>
-    <p class="placeholder"><img src="assets/excluding.png" width="1000" height="1000" class="center"></p>
-</div>
-
-
-<h2>Creating <code>winner_model</code> Column and Cleaning DataFrame</h2>
-<div class="box">
-    <p>
-        This code creates a new column called <code>'winner_model'</code>, which selects either the <code>'model_a'</code> or <code>'model_b'</code> depending on who was the winner. Then, it removes the columns <code>'model_a'</code>, <code>'model_b'</code>, and <code>'winner'</code> because they are not needed once the column <code>'winner_model'</code> has been created. The cleaned DataFrame is then returned without showing the index.
-    </p>
-    <p class="placeholder"><img src="assets/winner.png" width="1000" height="1000" class="center"></p>
-</div>
-
-<h2>Extracting Conversation Metadata</h2>
-<div class="box">
-    <p>
-        Here we define a function, <code>extract_conv_metadata</code>, that does safe parsing on <code>'conv_metadata'</code>. Then, it extracts the appropriate token information for the winning model through user tokens, assistant tokens, and context tokens. We use this function to apply to every row in the DataFrame and create new columns out of the metadata extracted. Finally, we join these new columns with the original DataFrame, drop the original <code>'conv_metadata'</code> column, and display the updated DataFrame without the index.
-    </p>
-    <p class="placeholder"><img src="assets/extract1.png" width="1000" height="1000" class="center"></p>
-</div>
-
-<h2>Filtering Out Unknown Languages</h2>
-<div class="box">
-    <p>
-        Here, we filtered the DataFrame for those rows for which <code>'language'</code> does not equal <code>'unknown'</code>. Then, we display this updated DataFrame without showing an index to make certain that we retain only entries of known languages going forward.
-    </p>
-    <p class="placeholder"><img src="assets/filter.png" width="1000" height="1000" class="center"></p>
-</div>
-
-<h2>Listing Unique Models</h2>
-<div class="box">
-    <p>
-        Here, we will be able to get the unique models by pulling a list of unique values from the <code>'model'</code> column in the DataFrame. Then we are going to find the length of this list, which is going to give us a total count of unique models. Now we print both the list of unique models and its length for the user to analyze further.
-    </p>
-    <p class="placeholder"><img src="assets/unique.png" width="1000" height="1000" class="center"></p>
-</div>
-<!-- 
-<h2>Extracting Deduplication Tags</h2>
-<div class="box">
-    <p>
-        Here, we define a function <code>extract_dedup_tag</code>, which safely evaluates the column <code>'dedup_tag'</code> to extract the values for keys <code>'high_freq'</code> and <code>'sampled'</code>. Then, we apply this function onto every row of column <code>'dedup_tag'</code>, creating two new columns: <code>'dedup_tag_high_freq'</code> and <code>'dedup_tag_sampled'</code>. Later, we do not need <code>'dedup_tag'</code>, and hence we print the updated DataFrame.
-    </p>
-    <p class="placeholder"><img src="assets/duplicate.png" width="1000" height="1000" class="center"></p>
-</div> -->
-
-<h2>Converting Timestamp to Period</h2>
-<div class="box">
-    <p>
-        Here, we convert the <code>'tstamp'</code> column to a period with daily frequency and store it in a new column named <code>'tstamp_period'</code>. Optionally, one may also drop the original column <code>'tstamp'</code>, if it won't be used anymore. Finally, we print a few lines of the updated DataFrame to verify.
-    </p>
-    <p class="placeholder"><img src="assets/convert.png" width="1000" height="1000" class="center"></p>
-</div>
-
-<h2>Cleaning Up the DataFrame</h2>
-<div class="box">
-    <p>
-        These cells of code are used to clean up the DataFrame by removing the columns <code>'category_tag'</code>, <code>'tstamp'</code>, <code>'dedup_tag'</code>, and <code>'month_year'</code> from the dataset because these columns are unnecessary. So we can concentrate on the remaining relevant data.
-    </p>
-    <p class="image-container">
-      <img src="assets/clean1.png" width="1000"height="1000"class="center">
-      <br>
-      <img src="assets/clean2.png" width="250" height="500"class="center">
-      <br>
-      <img src="assets/clean3.png" width="250" height="500"class="center">
-      <br>
-      <img src="assets/clean4.png" width="500" height="1000"class="center"></p>
-</div>
 <h2>Comparison of Old and New Dataset</h2>
 <div class="box">
     <p>
-        In this section, we compare the old dataset with the new cleaned dataset to highlight the differences and improvements made through the data cleaning process. We examine factors such as missing values, data types, and the presence of unnecessary columns.
+        In our ongoing efforts to refine our model training processes, we have updated our datasets to enhance data quality and consistency. Below, we illustrate the structural and content-related improvements between the original and the revised datasets.
     </p>
     <div class="image-container">
-        <img src="assets/old_dataset.png" alt="Old Dataset Overview" class ="center">
+        <img src="assets/oldds.jpg" alt="Old Dataset Overview" width="1000" class ="center">
         <br>
-        <img src="assets/new_dataset.png" alt="New Cleaned Dataset Overview" class ="center">
+        <img src="assets/newds.jpg" alt="New Cleaned Dataset Overview" width="1000" class ="center">
     </div>
     <p>
-        The images above display the structure and content of the datasets before and after cleaning. As observed, the new dataset has unwanted columns removed, timestamps converted to readable dates, and entries with unknown languages filtered out.
+        The initial dataset, depicted in the first image, included various metrics such as language detection, refusal flags, and comprehensive token counts, along with qualitative assessments like information fulfillment and technical accuracy. The second image showcases our cleaned dataset, which now features:
+<br>
+               <li>Enhanced data structure with consistent and uniform fields across records.</li><br>
+               <li>Removal of extraneous columns to focus on core metrics critical to model evaluation.</li><br>
+               <li>Standardization of entries including timestamp conversions to improve readability and analysis feasibility.</li><br>
+
+        <br>
+        These changes ensure that our dataset is not only streamlined but also optimized for more effective model training and performance evaluation.
     </p>
 </div>
-<h1>Exploratory Data Analysis (EDA)</h1>
-
-<h2>Model Distribution Plot and Language Count Plot</h2>
+<h1>Models Implementation</h1>
+<h2>1. Random Forest</h2>
 <div class="box">
-    <p>
-        In the plot distribution of models, it visualizes which models are most frequent and which are less common. Each bar represents a model, and its length corresponds to the count of occurrences of that model.
-        The second plot represents the count of different languages that have more than 50 counts. We are filtering out languages with only more than 50 counts to make the plots easier to focus on the more frequently occurring ones; otherwise, the plot will be cluttered.
-    </p>
-    <img src="assets/v1.png" width="500" class="center" alt="Model Distribution Plot">
-    <br><img src="assets/v2.png" width="500" class="center" alt="Language Count Plot">
-</div>
-
-
-<h2>Analysis of Boolean Columns</h2>
-<div class="box">
-    <p>
-        The rest of the graphs explain the Boolean columns:
-    </p>
-    <ul>
-        <li><strong>is_code:</strong> There is a higher count in <em>False</em>, indicating that the dataset is not associated with code or programming tasks, suggesting a focus on non-technical content.</li>
-        <li><strong>is_refusal:</strong> There is a higher count in <em>False</em>, indicating that inputs were accepted and users are responsive to input.</li>
-        <li><strong>information_fulfillment:</strong> There is a higher count in <em>False</em>, indicating that the model's information needs were not met.</li>
-        <li><strong>math:</strong> There is a higher count in <em>False</em>, indicating a lack of mathematical proficiency, suggesting that it doesn't involve mathematical reasoning.</li>
-        <li><strong>specificity:</strong> There is a higher count in <em>True</em>, indicating that the model information is specific, providing detailed insights.</li>
-        <li><strong>domain_knowledge:</strong> There is a higher count in <em>True</em>, indicating that the model content is strong in particular fields.</li>
-        <li><strong>complexity:</strong> There is a higher count in <em>False</em>, indicating that the complexity of the topic is addressed in a straightforward manner, implying a simpler approach to questions.</li>
-        <li><strong>problem_solving:</strong> There is a higher count in <em>False</em>, indicating that no problem-solving is clear, which may indicate a lack of critical thinking.</li>
-        <li><strong>critical_thinking:</strong> There is a higher count in <em>False</em>, indicating a lack of creativity shown in the model's response.</li>
-        <li><strong>technical_accuracy:</strong> There is a higher count in <em>True</em>, indicating that the model provides technical information that is accurate and reliable.</li>
-        <li><strong>real_world:</strong> There is a higher count in <em>True</em>, indicating that the model content connects with real-world applications.</li>
-    </ul>
-    <img src="assets/v3.png" width="500" class="center" alt="Boolean Columns Analysis">
-</div>
-
-<h2>Correlation Heatmap of Token Counts</h2>
-<div class="box">
-    <p>
-        This is a <strong>heatmap</strong> visualizing the <strong>correlation matrix</strong> for the numerical columns: <code>sum_user_tokens</code>, <code>sum_assistant_tokens</code>, and <code>context_tokens</code>. The color intensity and numbers in the cells show the strength of the correlation that goes from -1.0 (negative correlation) up to 1.0 (positive correlation). It can be seen from this plot that <code>context_tokens</code> are highly positively correlated with <code>sum_user_tokens</code> with a value of 0.84, while <code>sum_assistant_tokens</code> is moderately correlated with the other columns.
-    </p>
-    <p>
-        This plot is useful for understanding the relationship of token counts in various model development stages and model selection, especially if the goal is to tune models according to their token efficiency and correlation patterns.
-    </p>
-    <img src="assets/V11.png" width="500" class="center" alt="Correlation Heatmap of Token Counts">
-</div>
-
-<h2>Stacked Bar Plot of Language Distribution Across Models</h2>
-<div class="box">
-    <p>
-        This is a <strong>stacked bar plot</strong> showing the distribution of languages across different models. Each bar illustrates a model, while the hues in that bar show the counts across different languages, for example, English, Chinese, Spanish. The plot shows how frequently each of the languages appears in interactions for each model, with <strong>English</strong> dominating most of the models.
-    </p>
-    <p>
-        This plot is useful for both model selection by highlighting which models perform well with a particular language and for model development to determine the language handling capability, aiming to ensure that the models are optimized for multilingual tasks.
-    </p>
-    <img src="assets/V13.png" width="500" class="center" alt="Stacked Bar Plot of Language Distribution">
-</div>
-
-<h2>Line Plot of Token Trends Over Time</h2>
-<div class="box">
-    <p>
-        This is the <strong>line plot</strong> of the trends of user tokens, assistant tokens, and context tokens over time. The x-axis represents the time periods while the y-axis shows the total token count for each category. The orange line (assistant tokens) peaks the highest, indicating that assistant models used more tokens compared to user and context tokens.
-    </p>
-    <p>
-        This provides insight into token usage patterns, helpful in the development of models by keeping track of token efficiency or model selection in finding out which models can handle certain token-intensive tasks efficiently over time. It can also assist in the optimization of token management.
-    </p>
-    <img src="assets/V14.png" width="500" class="center" alt="Line Plot of Token Trends Over Time">
-</div>
-
-<h2>Count Plot of Model Refusals</h2>
-<div class="box">
-    <p>
-        A <strong>count plot</strong> comparing the number of interactions for each of the different models, based on whether the model refused to answer (<code>is_refusal</code>). Green bars are for interactions where the model responded, and orange bars represent refusals.
-    </p>
-    <p>
-        This plot helps to identify models that are most likely to refuse responses. For example, the refusal rate of <code>chatgpt-4-0-latest</code> is higher. Hence, this provides guidance on model selection: select models that would be more dependable with respect to response, and in model development: investigate why certain models refuse and how to reduce occurrences of such.
-    </p>
-    <img src="assets/V15.png" width="500" class="center" alt="Count Plot of Model Refusals">
-</div>
-
-<h2>Language Word Cloud</h2>
-<div class="box">
-    <p>
-        The word cloud below visualizes the most common languages in this dataset. In the word cloud, the size of each language name represents the frequency of that language within the data. For example, English, Chinese, and Russian are bigger compared to the other names because they occur more frequently in the dataset. Smaller words like Swedish, Dutch, and Tamil represent less frequency. This visualization effectively shows the distribution and variation in the use of language in the dataset.
-    </p>
-    <img src="assets/V16.png" width="500" class="center" alt="Language Word Cloud">
-</div>
-
-<h2>Model Name Word Cloud</h2>
-<div class="box">
-    <p>
-        The most frequent models, like "chatgpt-4.0-latest", "gpt-4.0-2024-08-06", and "llama-3.1-70b-instruct", are larger since they appear more often in the dataset. Less frequent models like "gemini-1.5-pro-api-0514" and "deepseek-v2-api-0628" are in smaller text to show how much less they appear compared to others.
-    </p>
-    <img src="assets/V17.png" width="500" class="center" alt="Model Name Word Cloud">
-</div>
-
-
-<h2>Bubble Plots of Token Usage by Model</h2>
-<div class="box">
-    <p>
-        The two above <strong>bubble plots</strong> outline the relationship of token usage (user and assistant) with different models. In each of these plots, the size of each bubble denotes the number of tokens, with larger-sized bubbles indicating higher token usage. The first plot shows the relationship between user tokens and models, and the second between assistant tokens and models.
-    </p>
-    <p>
-        These plots are informative for understanding different model behaviors in light of variable numbers of input tokens and could further drive model development by identifying models that manage tokens more efficiently, as well as model selection by picking out models suitable for token-intensive tasks.
-    </p>
-    <img src="assets/v20.png" width="500" class="center" alt="Bubble Plot of User Tokens by Model">
-    <img src="assets/v21.png" width="500" class="center" alt="Bubble Plot of Assistant Tokens by Model">
-</div>
-
-<h2>Joint Plot of User Tokens vs Assistant Tokens</h2>
-<div class="box">
-    <p>
-        This is a <strong>joint plot</strong> showing the relation between user tokens and assistant tokens. The scatter plot in the middle shows the distribution of these tokens, and the histograms on top and right show the frequency distributions for user and assistant tokens, respectively.
-    </p>
-    <p>
-        This plot is useful for model development and model selection, as it shows the relation between how many input (user tokens) are given and how many output (assistant tokens) are returned by various models. The plot can help in optimizing token usage for efficiency and locating models that handle inputs or outputs with a large count of tokens efficiently.
-    </p>
-    <img src="assets/v22.png" width="500" class="center" alt="Joint Plot of User Tokens vs Assistant Tokens">
-</div>
-
-<h2>Distribution of sum_user_tokens</h2>
-<div class="box">
-    <p>
-        The plot distribution of <code>sum_user_tokens</code> visualizes with the Kernel Density Estimate (KDE) where it shows that the majority of the token values are near zero, with a line extending toward higher values up to 500,000. This indicates that most users have relatively low token usage, while a smaller subset has significantly higher usage.
-    </p>
-    <img src="assets/V4.png" width="500" class="center" alt="sum_user_tokens Distribution">
-</div>
-<h2>Distribution of sum_assistant_tokens</h2>
-<div class="box">
-    <p>
-        The second plot, the distribution of <code>sum_assistant_tokens</code>, also visualizes with the Kernel Density Estimate (KDE), where the majority of assistant tokens are clustered up to 700,000. While the majority of assistant responses involve a small number of tokens, there are occasional responses with a much higher token count.
-    </p>
-    <img src="assets/s2.png" width="500" class="center" alt="sum_assistant_tokens Distribution">
-</div>
-
-<h2>Distribution of context_tokens</h2>
-<div class="box">
-    <p>
-        The third plot, the distribution of <code>context_tokens</code>, also visualizes with the Kernel Density Estimate (KDE). It's similar to the first plot, where the majority of <code>context_tokens</code> values are near zero with a line extending to the 500,000 values. This means that in our dataset, the majority of entries have a low number of tokens (e.g., words, characters, or data units in each context), while only a small number of entries have a much higher token count.
-    </p>
-    <img src="assets/s3.png" width="500" class="center" alt="context_tokens Distribution">
-</div>
-
-<h2>Language Proportion Pie Chart</h2>
-<div class="box">
-    <p>
-        The <strong>pie chart</strong> below displays the proportion of languages with over 1,000 occurrences in the dataset, with each segment being representative of a language. This is indicated with the size of the slice proportional to the count. The dominant proportion is English at almost 70%, followed by Russian, Chinese, and others.
-    </p>
-    <p>
-        This plot helps in model development by highlighting the language distribution, allowing developers to focus on optimizing models for prevalent languages. It also aids in model selection, as dealing with multilingual tasks sometimes requires model choices based on support for a particular language.
-    </p>
-    <img src="assets/s4.png" width="500" class="center" alt="Language Proportion Pie Chart">
-</div>
-
-<h2>Box Plots of Token Distribution by Model</h2>
-<div class="box">
-    <p>
-        These are <strong>box plots</strong> of the distribution of <code>sum_user_tokens</code> and <code>sum_assistant_tokens</code> for models with at least 2,000 occurrences. These box plots depict the dispersion in token usage for each model: the median represented by the central line of the box, interquartile range by the size of the box itself, and possible outliers as dots outside the whiskers.
-    </p>
-    <p>
-        These plots are useful in the model development stage by highlighting token usage consistency and outliers that could be used to optimize the handling of the tokens. They also contribute to model selection by comparing different models based on token efficiency.
-    </p>
-    <img src="assets/s5.png" width="500" class="center" alt="Box Plots of Token Distribution by Model">
-</div>
-
-<h2>Violin Plot of sum_user_tokens by Model and is_code</h2>
-<div class="box">
-    <p>
-        The following <strong>violin plot</strong> depicts the distribution of <code>sum_user_tokens</code> for each model, segregated based on the condition if <code>is_code</code> is true or false. The y-axis limits are set to a maximum of 10,000 for better clarity. Here, the violin plot shows the density and range of token usage; hence, one can get insights about how each model behaves with and without code input.
-    </p>
-    <p>
-        This plot helps in model development for understanding the pattern of token usage when handling code and assists in model selection by pointing out models that manage efficiently with token-heavy tasks, especially for code.
-    </p>
-    <img src="assets/s6.png" width="500" class="center" alt="Violin Plot of sum_user_tokens">
-    <br><img src="assets/s7.png" width="500" class="center" alt="Violin Plot of sum_user_tokens">
-</div>
-<h2>Scatter Plots of User Tokens vs Assistant Tokens</h2>
-<div class="box">
-    <p>
-        These are <strong>scatter plots</strong> showing the relationship between user tokens and assistant tokens. The first plot is colored by model, focusing on models with more than 2,000 occurrences, while the second plot is colored by language, highlighting languages with more than 1,000 occurrences. These plots help identify patterns in token usage across different models and languages.
-    </p>
-    <p>
-        The plots are useful for model development to optimize token handling based on specific models and languages, and for model selection by determining which models and languages are more efficient or better suited for token-heavy tasks.
-    </p>
-    <img src="assets/s8.png" width="500" class="center" alt="Scatter Plot Colored by Model">
     
+    <p>
+        A Random Forest binary classifier is trained, resulting in multiple classifiers. After training, the classifiers are used to collect the probability scores of each instance in the test set for each class and the class with the highest probability is then selected for each test instance where it calculates and displays metrics—accuracy, precision, recall, and F1-score—for each of the binary classifiers on the test set.
+    </p><br>
+    <p class="placeholder"><img src="assets/m1.png" width="500" class="center"></p><br>
+    <p>
+        Printed the overall accuracy of the Random Forest classifier across all classes. Models like gpt-4-0125-preview and llama-3-70b-instruct show high precision, recall, and F1-scores, while models like chatgpt-4o-latest underperformed. Most of the models have moderate performance, with scores ranging from 0.60 to 0.80.
+    </p><br>
+    <p class="placeholder"><img src="assets/m1_2.png" width="500" class="center"></p>
+    <p class="placeholder"><img src="assets/m5.png" width="500" class="center"></p><br>
+    <p>
+        The matrix provides a view of how well each model is performing relative to others in predicting different classes. The area under each curve (AUC) is an indicator of how well the model can distinguish between classes, with values closer to 1 indicating better performance.
+    </p><br>
+    <p class="placeholder"><img src="assets/m3.png" width="500" class="center"></p><br><br>
+    <p class="placeholder"><img src="assets/m4.png" width="500" class="center"></p><br>
 </div>
-<h2>Histograms of Token Distribution by Language</h2>
+
+<h2>2. XGBoost</h2>
+<div class="box">
+    
+    <p>
+        The XGBoost classifier achieved an overall accuracy of 0.68. We have used XGBoost for a multi-class classification using a One-vs-Rest approach. The process involves the following steps: Data Loading and Preprocessing, Hyperparameter Tuning using RandomizedSearchCV to tune hyperparameters and selecting the best parameters. Then it trains separate One-vs-Rest XGBoost classifiers for each class. Making predictions involves calculating overall accuracy, a classification report for precision, recall, and F1-score, and visualizing the confusion matrix. Additionally, AUC-ROC curves are plotted.
+    </p><br>
+    <p class="placeholder"><img src="assets/m6.png" width="800" class="center"></p><br>
+    <p>
+        The diagonal values, which show the highest numbers (e.g., 603 for the first class), indicate correct predictions.
+    </p><br>
+    <p class="placeholder"><img src="assets/m7.png" width="500" class="center"></p><br>
+    <p>
+        The curves closer to the top-left corner of the plot indicate better performance, with AUC values closer to 1.0.
+    </p><br>
+    <p class="placeholder"><img src="assets/m8.png" width="500" class="center"></p><br>
+</div>
+
+
+<h2>3. CatBoost</h2>
+<div class="box">
+    
+    <p>
+        The CatBoost classifier achieved an overall accuracy of 0.66. We have used CatBoost for a multi-class classification using a One-vs-Rest approach. The process includes the following steps: Data Loading and Preprocessing, Hyperparameter Tuning using RandomizedSearchCV to tune hyperparameters and selecting the best parameters. Then it trains separate CatBoost classifiers for each class. Making predictions involves calculating overall accuracy, a classification report for precision, recall, and F1-score, and visualizing the confusion matrix. Additionally, AUC-ROC curves are plotted.
+    </p><br>
+    <p class="placeholder"><img src="assets/m9.png" width="800" class="center"></p><br><br>
+    <p class="placeholder"><img src="assets/m10.png" width="500" class="center"></p><br>
+    <p>
+        The Area Under the Curve (AUC) where values close to 1 indicate high ability and values closer to 0.5 suggest no better than random performance.
+    </p><br>
+    <p class="placeholder"><img src="assets/m11.png" width="500" class="center"></p><br>
+</div>
+
+<h2>4. LightGBM</h2>
 <div class="box">
     <p>
-        These are <strong>histograms</strong> with a kernel density estimate, showing the distribution of user tokens (top plot) and assistant tokens (bottom plot) across languages that have more than 1,000 occurrences. Both plots reveal that for the majority of the interactions, regardless of language, just a few tokens are involved (between 0 and 10,000 tokens), with some outliers at higher token counts. We can further explore language-specific differences or outliers in token usage that might indicate trends in longer conversations.
-    </p>
-    <img src="assets/s1.png" width="500" class="center" alt="Histograms of Token Distribution by Language">
-    <br><img src="assets/v19.png" width="500" class="center" alt="Histograms of Token Distribution by Language">
+        The LightGBM classifier achieved an overall accuracy of 0.68. The process uses LightGBM for a multi-class classification through a One-vs-Rest approach and involves the following steps: Data Loading and Preprocessing, Hyperparameter Tuning using RandomizedSearchCV with 150 iterations and 5-fold cross-validation to tune hyperparameters and selecting the best parameters. Then, using the One-vs-Rest method, separate LightGBM classifiers are trained. Evaluating the results includes analyzing confusion matrices, classification reports, and AUC-ROC curves.
+    </p><br>
+    <p class="placeholder"><img src="assets/m12.png" width="800" class="center"></p><br>
+    <p>
+        High diagonal values suggest that the classifier performs well in predicting those classes, whereas high off-diagonal values indicate areas where the classifier confuses one class for another.
+    </p><br>
+    <p class="placeholder"><img src="assets/m13.png" width="500" class="center"></p><br>
+    <p>
+        Values close to 1 indicate excellent ability, while values near 0.5 suggest no better accuracy than random guessing.
+    </p><br>
+    <p class="placeholder"><img src="assets/m14.png" width="500" class="center"></p><br>
 </div>
 
-
-<h1>Additional Exploratory Data Analysis (EDA)</h1>
-
-<h2>Model Comparison Based on Average Accuracy</h2>
+<h2>5. Voting</h2>
 <div class="box">
+    
     <p>
-        This section compares the top 10 models with the highest average accuracy and the bottom 5 models with the lowest average accuracy. Various plots are generated to visualize their performance metrics like Win Rate, humaneval-python scores, Java scores, JavaScript variability, and C++ performance distribution.
-    </p>
+        The Voting classifier achieved an overall accuracy of 0.69. We handled a multi-class classification by utilizing a Voting Classifier, combining LightGBM, CatBoost, and XGBoost through a One-vs-Rest (OvR) strategy. The process includes the following steps: Data Loading and Preprocessing, Model Initialization where it initializes three models—LightGBM, CatBoost, and XGBoost—with hyperparameters, which constructs a Voting Classifier using soft voting from all three models. Then, train the One-vs-Rest Model with multiple Voting Classifiers in a One-vs-Rest approach. Evaluating the results includes analyzing confusion matrices and classification reports.
+    </p><br>
+    <p class="placeholder"><img src="assets/m15.png" width="500" class="center"></p><br>
     <p>
-        Below are the plots generated from the analysis:
-    </p>
-    <div class="image-container">
-        <img src="assets/e1.png" alt="Win Rate Comparison">
-        <img src="assets/e2.png" alt="humaneval-python Performance">
-        <img src="assets/e3.png" alt="Java Performance">
-        <img src="assets/e4.png" alt="JavaScript Variability">
-        <img src="assets/e5.png" alt="C++ Performance Distribution">
-    </div>
+        The numbers on the matrix diagonal (e.g., 608 for the first class) indicate correct predictions for each class, while off-diagonal numbers represent misclassifications.
+    </p><br>
+    <p class="placeholder"><img src="assets/m16.png" width="500" class="center"></p><br>
 </div>
 
-<h2>Model Performance Metrics Analysis</h2>
+<h2>Accuracy Achieved by Each Model</h2>
 <div class="box">
-    <p>
-        This section analyzes various performance metrics of models, such as Average WER, RTFx, AMI, Earnings22, Gigaspeech, LS Clean, LS Other, SPGISpeech, Tedlium, and Voxpopuli. Different types of plots are generated to visualize these metrics across different models.
-    </p>
-    <p>
-        Below are the plots generated from the analysis:
-    </p>
-    <div class="image-container">
-        <img src="assets/e6.png" alt="Average WER">
-        <img src="assets/e7.png" alt="RTFx">
-        <img src="assets/e8.png" alt="AMI Scores">
-        <img src="assets/e9.png" alt="Earnings 2022">
-        <img src="assets/e10.png" alt="Gigaspeech Scores Distribution">
-        <img src="assets/e11.png" alt="LS Clean Performance">
-        <img src="assets/e12.png" alt="LS Other Performance">
-        <img src="assets/e13.png" alt="SPGISpeech Variability">
-        <img src="assets/e14.png" alt="Tedlium Performance">
-        <img src="assets/e15.png" alt="Voxpopuli Scores Distribution">
-    </div>
+    <table style="width:100%; border-collapse: collapse;">
+        <tr>
+            <th style="background-color: black; color: white; padding: 10px;">MODEL NAME</th>
+            <th style="background-color: black; color: white; padding: 10px;">ACCURACY</th>
+        </tr>
+        <tr>
+            <td style="text-align: center; border: 1px solid black; padding: 10px;">RANDOM FOREST</td>
+            <td style="text-align: center; border: 1px solid black; padding: 10px;">0.69</td>
+        </tr>
+        <tr>
+            <td style="text-align: center; border: 1px solid black; padding: 10px;">XG BOOST</td>
+            <td style="text-align: center; border: 1px solid black; padding: 10px;">0.68</td>
+        </tr>
+        <tr>
+            <td style="text-align: center; border: 1px solid black; padding: 10px;">CATBOOST</td>
+            <td style="text-align: center; border: 1px solid black; padding: 10px;">0.66</td>
+        </tr>
+        <tr>
+            <td style="text-align: center; border: 1px solid black; padding: 10px;">LIGHTGBM</td>
+            <td style="text-align: center; border: 1px solid black; padding: 10px;">0.68</td>
+        </tr>
+        <tr>
+            <td style="text-align: center; border: 1px solid black; padding: 10px;">VOTING</td>
+            <td style="text-align: center; border: 1px solid black; padding: 10px;">0.69</td>
+        </tr>
+    </table>
 </div>
+
 <br><br><br><br>
 <footer>
     <p style="color: #ffffff;">Copyright &#169; 2024 Benchmark Studio. All Rights Reserved.</p>

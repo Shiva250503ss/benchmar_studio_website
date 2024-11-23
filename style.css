@@ -137,6 +137,16 @@ a:hover {
   margin: 0;
   padding: 0;
 }
+#background-image-section2 {
+  background-image: url('assets/bg5.webp'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 80vh;
+  margin: 0;
+  padding: 0;
+}
+
 
 .page-title {
   color: #ecf0f1;
