@@ -146,7 +146,15 @@ a:hover {
   margin: 0;
   padding: 0;
 }
-
+#background-image-conclusion {
+  background-image: url('assets/c1.webp'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 80vh;
+  margin: 0;
+  padding: 0;
+}
 
 .page-title {
   color: #ecf0f1;
